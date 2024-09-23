@@ -29,3 +29,5 @@ D:\PTPMQL\Duyen158\obj\Debug\net8.0\refint\Duyen158.dll
 D:\PTPMQL\Duyen158\obj\Debug\net8.0\Duyen158.pdb
 D:\PTPMQL\Duyen158\obj\Debug\net8.0\Duyen158.genruntimeconfig.cache
 D:\PTPMQL\Duyen158\obj\Debug\net8.0\ref\Duyen158.dll
+D:\PTPMQL\Duyen158\obj\Debug\net8.0\Duyen158.csproj.AssemblyReference.cache
+D:\PTPMQL\Duyen158\obj\Debug\net8.0\Duyen158.MvcApplicationPartsAssemblyInfo.cs

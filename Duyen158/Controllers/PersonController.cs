@@ -13,7 +13,7 @@ namespace Duyen158.Controllers
     [HttpPost]
     public IActionResult Index(Person ps)
     {   
-        string strOutput = "Xin chào " + ps.PersonId + " - " + ps.FullName + " - " + ps.Address;
+        string strOutput = "Xin chào " + ps.PesonID + " - " + ps.FullName + " - " + ps.Address;
         Viewbag.infoPerson = strOutput;
      return View();
     }
