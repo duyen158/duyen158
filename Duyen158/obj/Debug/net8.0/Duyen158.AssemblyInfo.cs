@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Duyen158")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+004f4a051d6a58f8fdd6d1d1ae9bcd7ecc305425")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c668b0abb42597225302b6d6670f84857cf704f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Duyen158")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Duyen158")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

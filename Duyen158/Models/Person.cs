@@ -6,7 +6,7 @@ namespace Duyen158.Models{
 
 public class Person{
     [Key]
-    public String? PersonId { get; set;}
+    public String? PersonID { get; set;}
     public string? FullName { get; set;}
     public string? Address { get; set;}
 }
