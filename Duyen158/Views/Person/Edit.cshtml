@@ -1,51 +1,19 @@
 @model Duyen158.Models.Person
-@{
-    ViewData ["Title"] = "Edit";
-}
 
-<h1>Edit</h1>
-<h4>Person</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<h2>Chỉnh sửa Person</h2>
 
-            <input type="hidden" asp-for="PersonID"/>
-
-            <div class="form-group">
-
-                <label asp-for="FullName" class="control-label"></label>
-
-                <input asp-for="FullName" class="form-control" />
-
-                <span asp-validation-for="FullName" class="text-danger"></span>
-
-            </div>
-
-            <div class="form-group">
-
-                <label asp-for="Address" class="control-label"></label>
-
-                <input asp-for="Address" class="form-control"/>
-
-                <span asp-validation-for="Address" class="text-danger"></span>
-
-            </div>
-
-            <div class="form-group">
-
-                <input type="submit" value="Save" class="btn btn-primary"/>
-
-            </div>
-        </form>
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="ID">Căn cước công dân</label>
+        <input type="number" class="form-control" name="CanCuocCongDan" value="@Model.ID" readonly />
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="form-group">
+        <label for="Name">Họ tên</label>
+        <input type="text" class="form-control" name="HoTen" value="@Model.Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Hometown">Quê quán</label>
+        <input type="text" class="form-control" name="QueQuan" value="@Model.Hometown" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+</form>

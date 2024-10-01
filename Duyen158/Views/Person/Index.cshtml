@@ -1,45 +1,29 @@
 @model IEnumerable<Duyen158.Models.Person>
-@using X.PagedList;
-@using X.PagedList.Mvc.Core;
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-<h1>Index</h1>
-<p>
-    <a asp-action="Create">Create New</a>
-    <a class="btn btn-success" asp-action="Download">Download</a>
-</p>
+<h2>Danh sách Person</h2>
+<a href="/Person/Create">Tạo mới Person</a>
 
 <table class="table">
-
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            </th></th>
-        </tr>
+            <th>Căn Cước Công Dân</th>
+            <th>Họ tên</th>
+            <th>Quê quán</th>
+            
     </thead>
-
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var person in Model)
+        {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.PersonID">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PersonID">Delete</a>
+                <td>@person.ID</td>
+                <td>@person.Name</td>
+                <td>@person.Hometown</td>
+                <td>    
+                    <a href="/Person/Details/@person.ID">Chi tiết</a> |
+                    <a href="/Person/Edit/@person.ID">Sửa</a> |
+                    <a href="/Person/Delete/@person.ID">Xóa</a>
                 </td>
             </tr>
         }
     </tbody>
-
 </table>

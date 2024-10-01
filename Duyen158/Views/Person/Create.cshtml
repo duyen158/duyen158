@@ -1,47 +1,19 @@
 @model Duyen158.Models.Person
 
-@{
-    ViewData["Title"] = "Create";
-}
+<h2>Tạo mới Person</h2>
 
-<h1>Create</h1>
-<h4>Person</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PersonID" class="control-label"></label>
-                <input asp-for="PersonID" class="form-control" />
-                <span asp-validation-for="PersonID" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-
-        </form>
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="ID">Căn cước công dân</label>
+        <input type="number" class="form-control" name="CanCuocCongDan" required />
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="form-group">
+        <label for="Name">Họ tên</label>
+        <input type="text" class="form-control" name="HoTen" required />
+    </div>
+    <div class="form-group">
+        <label for="Hometown">Quê quán</label>
+        <input type="text" class="form-control" name="QueQuan" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Tạo mới</button>
+</form>

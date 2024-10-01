@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Duyen158.Models;
-using Duyen158.Controllers;
 namespace Duyen158.Data
 {
     public class ApplicationDbcontext : DbContext
@@ -9,9 +8,11 @@ namespace Duyen158.Data
         {
         }
 
-        public DbSet<Person> Person { get; set; }
+        public DbSet<Person> Persons { get; set; }
 
         private readonly ApplicationDbcontext _context;
 
-        }
+        
+
+    }
 }

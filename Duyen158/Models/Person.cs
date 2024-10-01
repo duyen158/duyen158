@@ -1,13 +1,10 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+namespace Duyen158.Models
+{
+    public class Person
+    {
+        public int? ID { get; set; }
+        public string? Name { get; set;}
+        public string? Hometown { get; set;}
 
-namespace Duyen158.Models{
-[Table("Person")]
-
-public class Person{
-    [Key]
-    public String? PersonID { get; set;}
-    public string? FullName { get; set;}
-    public string? Address { get; set;}
-}
+    }
 }
