@@ -1,12 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Duyen158.Data;
-using Microsoft.Extensions.Options;
-
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")
- ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
-
-
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationDbContext") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -30,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Person}/{action=Index}/{id?}");
 
 app.Run();

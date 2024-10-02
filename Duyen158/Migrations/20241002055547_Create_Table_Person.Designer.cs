@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Duyen158.Migrations
 {
-    [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20240924041215_Create_table_Person")]
-    partial class Create_table_Person
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20241002055547_Create_Table_Person")]
+    partial class Create_Table_Person
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,16 +21,18 @@ namespace Duyen158.Migrations
 
             modelBuilder.Entity("Duyen158.Models.Person", b =>
                 {
-                    b.Property<string>("PersonID")
+                    b.Property<string>("CanCuocCongDan")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("HoTen")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("QueQuan")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonID");
+                    b.HasKey("CanCuocCongDan");
 
                     b.ToTable("Person");
                 });

@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Duyen158.Models
 {
     public class Person
     {
-        public int? ID { get; set; }
-        public string? Name { get; set;}
-        public string? Hometown { get; set;}
+        [Key]
+        public string CanCuocCongDan { get; set; }
+        public string HoTen { get; set; }
+        public string QueQuan { get; set; }
 
     }
 }

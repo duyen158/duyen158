@@ -1,82 +1,72 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Duyen158.Models;
-using Duyen158.Data;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Duyen158.Data;
+using Duyen158.Models;
 
 namespace Duyen158.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly ApplicationDbcontext _context;
-        public PersonController(ApplicationDbcontext context)
+        private readonly ApplicationDbContext _context;
+
+        public PersonController(ApplicationDbContext context)
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
-            var person = await _context.Persons.ToListAsync();
+            return View(await _context.Person.ToListAsync());
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.CanCuocCongDan == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
             return View(person);
         }
+
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Create(Person person)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CanCuocCongDan,HoTen,QueQuan")] Person person)
         {
             if (ModelState.IsValid)
             {
-                await _context.Persons.AddAsync(person);
+                _context.Add(person);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(person);
         }
-        public async Task<IActionResult> Edit(int ID)
+
+        public async Task<IActionResult> Edit(string id)
         {
-            var person = await _context.Persons.FirstOrDefaultAsync(p => p.ID == ID);
-            if (person == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            return View(person);
-        }
-        [HttpPost]
-         public async Task<IActionResult> Edit(Person person)
-         {
-            if (!ModelState.IsValid)
-            {
-                _context.Persons.Update(person);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(person);
-         }
-        public async Task<IActionResult> Delete(int Id)
-        {
-            var person = await _context.Persons.FirstOrDefaultAsync(p => p.ID == Id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-            return View(person);
-        }
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int Id)
-        {
-            var person = await _context.Persons.FirstOrDefaultAsync(p => p.ID == Id);
-            if (person != null)
-            {
-                _context.Persons.Remove(person); 
-                await _context.SaveChangesAsync(); 
-            }
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> Details(int id)
-        {
-            var person = await _context.Persons.FirstOrDefaultAsync(p => p.ID == id);
+
+            var person = await _context.Person.FindAsync(id);
             if (person == null)
             {
                 return NotFound();
@@ -84,5 +74,72 @@ namespace Duyen158.Controllers
             return View(person);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("CanCuocCongDan,HoTen,QueQuan")] Person person)
+        {
+            if (id != person.CanCuocCongDan)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(person);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PersonExists(person.CanCuocCongDan))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(person);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.CanCuocCongDan == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return View(person);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var person = await _context.Person.FindAsync(id);
+            if (person != null)
+            {
+                _context.Person.Remove(person);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool PersonExists(string id)
+        {
+            return _context.Person.Any(e => e.CanCuocCongDan == id);
+        }
     }
 }

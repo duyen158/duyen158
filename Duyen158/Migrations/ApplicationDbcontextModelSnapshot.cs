@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Duyen158.Migrations
 {
-    [DbContext(typeof(ApplicationDbcontext))]
-    partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,16 +18,18 @@ namespace Duyen158.Migrations
 
             modelBuilder.Entity("Duyen158.Models.Person", b =>
                 {
-                    b.Property<string>("PersonID")
+                    b.Property<string>("CanCuocCongDan")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("HoTen")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("QueQuan")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonID");
+                    b.HasKey("CanCuocCongDan");
 
                     b.ToTable("Person");
                 });

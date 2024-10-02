@@ -1,29 +1,41 @@
 @model IEnumerable<Duyen158.Models.Person>
 
-<h2>Danh sách Person</h2>
-<a href="/Person/Create">Tạo mới Person</a>
+@{
+    ViewData["Title"] = "Index";
+}
 
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
-            <th>Căn Cước Công Dân</th>
-            <th>Họ tên</th>
-            <th>Quê quán</th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QueQuan)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model)
-        {
-            <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.Hometown</td>
-                <td>    
-                    <a href="/Person/Details/@person.ID">Chi tiết</a> |
-                    <a href="/Person/Edit/@person.ID">Sửa</a> |
-                    <a href="/Person/Delete/@person.ID">Xóa</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QueQuan)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CanCuocCongDan">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CanCuocCongDan">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CanCuocCongDan">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
