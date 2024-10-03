@@ -16,6 +16,7 @@ namespace Duyen158.Data
 
         public DbSet<Person> Person { get; set; } = default!;
     
+        public DbSet<Employee> Employee { get; set; } = default!;
 
     }
 }
